@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS-467 Machine Learning RAG Project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">CS-467 ML Project</div>
+            <ul class="nav-links">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#demo">Demo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Code-Aware RAG System</h1>
+                <p class="subtitle fade-in-delay">Hybrid Retrieval for WordPress Documentation</p>
+                <p class="description fade-in-delay-2">
+                    A RAG system that classifies queries as code or concept. Semantic search handles concepts.
+                    Keyword matching handles code. The system chooses the right strategy for each query.
+                </p>
+                <div class="cta-buttons fade-in-delay-3">
+                    <a href="#demo" class="btn btn-primary">Try Demo</a>
+                    <a href="#overview" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="overview" class="section">
+        <div class="container">
+            <h2 class="section-title">Project Overview</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Problem</h3>
+                    <p>
+                        Standard RAG treats all documentation equally. WordPress queries fall into two categories.
+                        Code queries need exact matches. Concept queries need semantic understanding. One approach fails both.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Solution</h3>
+                    <p>
+                        The system classifies each query. Code queries get keyword scoring. Concept queries get semantic scoring.
+                        Document type boosting increases precision. Each query uses the right strategy.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔧</div>
+                    <h3>Tech Stack</h3>
+                    <p>
+                        Sentence-BERT embeddings (all-MiniLM-L6-v2). FAISS vector search.
+                        Flask REST API. Vanilla JavaScript frontend. Real-time query processing.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Results</h3>
+                    <p>
+                        +20% Precision@1 over baseline. +13% Precision@3.
+                        Sub-10ms retrieval maintained. Tested on WordPress documentation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">System Architecture</h2>
+            <div class="architecture-flow">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <h4>Document Ingestion</h4>
+                    <p>Parse and chunk documents into semantic units</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <h4>Embedding Generation</h4>
+                    <p>Convert text chunks to vector representations</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <h4>Vector Storage</h4>
+                    <p>Index embeddings for efficient similarity search</p>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <h4>Retrieval + Generation</h4>
+                    <p>Query matching and LLM-powered response synthesis</p>
+                </div>
+            </div>
+
+            <div class="tech-details">
+                <h3>Technical Components</h3>
+                <ul class="feature-list">
+                    <li><strong>Embedding Model:</strong> all-MiniLM-L6-v2. 384-dimensional vectors.</li>
+                    <li><strong>Vector Database:</strong> FAISS. L2 distance. Efficient similarity search.</li>
+                    <li><strong>Query Classification:</strong> Regex patterns detect code queries. Heuristics handle edge cases.</li>
+                    <li><strong>Scoring:</strong> Semantic weight 0.7 for concepts. Keyword weight 0.6 for code.</li>
+                    <li><strong>Document Boosting:</strong> Code docs get 1.5x on code queries. Concept docs get 1.3x on concept queries.</li>
+                    <li><strong>API:</strong> Flask REST endpoints. CORS enabled. Real-time processing.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="section">
+        <div class="container">
+            <h2 class="section-title">Results & Performance</h2>
+            <div class="results-grid">
+                <div class="metric-card">
+                    <div class="metric-value">+20%</div>
+                    <div class="metric-label">Precision@1 Improvement</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">+13%</div>
+                    <div class="metric-label">Precision@3 Improvement</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">~5ms</div>
+                    <div class="metric-label">Avg Retrieval Time</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">100%</div>
+                    <div class="metric-label">Query Classification Accuracy</div>
+                </div>
+            </div>
+
+            <div class="findings">
+                <h3>Key Findings</h3>
+                <div class="grid-2">
+                    <div class="finding-item">
+                        <h4>Query Type Matters</h4>
+                        <p>Code queries get 60% keyword weight. Concept queries get 70% semantic weight.
+                           Classification determines the strategy. Performance depends on correct classification.</p>
+                    </div>
+                    <div class="finding-item">
+                        <h4>Document Boosting Works</h4>
+                        <p>Code docs get 1.5x boost on code queries. Concept docs get 1.3x on concept queries.
+                           Top-1 precision increases. Speed remains constant.</p>
+                    </div>
+                    <div class="finding-item">
+                        <h4>Hybrid Beats Semantic</h4>
+                        <p>Hybrid retrieval improved baseline by 20% on Precision@1. Function names need exact matches.
+                           Pure embeddings miss exact matches. Keyword scoring solves this.</p>
+                    </div>
+                    <div class="finding-item">
+                        <h4>Production Ready</h4>
+                        <p>FAISS maintains sub-10ms retrieval. Hybrid scoring adds minimal overhead.
+                           System handles real-time queries. Interactive applications supported.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">Interactive Demo</h2>
+            <div class="demo-status">
+                <span id="apiStatus" class="status-demo">Checking connection...</span>
+            </div>
+            <div class="demo-container">
+                <div class="chat-interface">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message bot-message">
+                            <div class="message-content">
+                                Hello! I'm a Code-Aware RAG assistant for WordPress development.
+                                Ask me questions like:
+                                <ul>
+                                    <li>How do I use wp_enqueue_script?</li>
+                                    <li>What are WordPress hooks?</li>
+                                    <li>How to create custom post types?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input-container">
+                        <input
+                            type="text"
+                            id="userInput"
+                            class="chat-input"
+                            placeholder="Ask about WordPress development..."
+                            autocomplete="off"
+                        >
+                        <button class="send-btn" id="sendBtn">Send</button>
+                    </div>
+                </div>
+                <div class="demo-note">
+                    <p><strong>Setup:</strong> Run <code>python app.py</code> to start the RAG backend API, then refresh this page to enable live queries.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Code-Aware RAG System. Portfolio project showcasing ML engineering skills.</p>
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="README.md" target="_blank">Documentation</a>
+                <a href="https://arxiv.org/abs/2312.10997" target="_blank">Research Paper</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
