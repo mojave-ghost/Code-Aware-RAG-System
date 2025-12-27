@@ -1,7 +1,7 @@
 # Code-Aware RAG for WordPress Development
 ## CS 467 Machine Learning - Final Project
 
-**Student:** [Your Name]  
+**Student:** Mario Salinas 
 **Date:** December 2025  
 **Paper:** "Retrieval-Augmented Generation for Large Language Models: A Survey" (Gao et al., 2023)  
 **ArXiv:** https://arxiv.org/abs/2312.10997
